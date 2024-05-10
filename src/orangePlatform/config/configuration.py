@@ -1,6 +1,6 @@
 from orangePlatform.constants import *
 from orangePlatform.utils.common import read_yaml ,create_directories
-from orangePlatform.entity.config_entity import (DataIngestionConfig,DataValidationConfig)
+from orangePlatform.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataPreparationConfig,ModelTrainerConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -46,3 +46,37 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+    
+
+    def get_data_preparation_config(self) -> DataPreparationConfig:
+        config = self.config.data_preparation
+
+        create_directories([config.root_dir])
+
+        data_preparation_config = DataPreparationConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+        )
+
+        return data_preparation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.ConvLSTM2D
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_data_path = config.train_data_path,
+            test_data_path = config.test_data_path,
+            model_name = config.model_name,
+            num_lstm_units=params.num_lstm_units,
+            learning_rate=params.learning_rate,
+            epochs=params.epochs,
+            early_stopping_patience=params.early_stopping_patience,
+            nsteps=params.nsteps
+                    
+        )
+
+        return model_trainer_config

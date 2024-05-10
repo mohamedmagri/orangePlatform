@@ -16,3 +16,22 @@ class DataValidationConfig:
     STATUS_FILE: str
     unzip_data_dir: Path
     all_schema: dict
+
+
+@dataclass(frozen=True)
+class DataPreparationConfig:
+    root_dir: Path
+    data_path: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    train_data_path: Path
+    test_data_path: Path
+    model_name: str
+    num_lstm_units: float
+    learning_rate: float
+    epochs: float
+    early_stopping_patience: float
+    nsteps: float

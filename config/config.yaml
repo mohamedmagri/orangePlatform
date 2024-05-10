@@ -11,3 +11,18 @@ data_validation:
   root_dir: artifacts/data_validation
   unzip_data_dir: artifacts/data_ingestion/Orange_data.csv
   STATUS_FILE: artifacts/data_validation/status.txt
+
+
+data_preparation:
+  root_dir: artifacts/data_preparation
+  data_path: artifacts/data_ingestion/Orange_data.csv
+
+
+
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  train_data_path: artifacts/data_preparation/train_LTE.csv
+  test_data_path: artifacts/data_preparation/test_LTE.csv
+  model_name: model.joblib
+
