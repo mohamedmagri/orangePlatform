@@ -6,3 +6,8 @@ data_ingestion:
   source_URL: https://github.com/mohamedmagri/ProjetSkier/raw/master/Orange_data.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+data_validation:
+  root_dir: artifacts/data_validation
+  unzip_data_dir: artifacts/data_ingestion/Orange_data.csv
+  STATUS_FILE: artifacts/data_validation/status.txt

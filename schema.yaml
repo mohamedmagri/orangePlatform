@@ -1,1 +1,6 @@
-key: val
+COLUMNS:
+  Period: object
+  unknown: float64
+  3G: float64
+  2G: float64
+  LTE: float64
