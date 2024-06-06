@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/0c314ac9c92143bd8e40ced71a507543/artifacts
+end_time: 1717633015081
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0c314ac9c92143bd8e40ced71a507543
+run_name: dapper-gnat-233
+run_uuid: 0c314ac9c92143bd8e40ced71a507543
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717633008368
+status: 3
+tags: []
+user_id: mohamed

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Forecasting Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1>Welcome to Orange Forecasting Platform</h1>
+        <img id="plot_image" src="{{ plot }}" alt="Prediction Plot" />
+        <br />
+        <form action="/predict" method="POST">
+            <button type="submit">Get Prediction</button>
+        </form>
+    </div>
+</body>
+
+</html>

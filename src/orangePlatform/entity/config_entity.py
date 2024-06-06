@@ -35,3 +35,30 @@ class ModelTrainerConfig:
     epochs: float
     early_stopping_patience: float
     nsteps: float
+
+
+@dataclass(frozen=True)
+class Model_TrainerConfig:
+    root_dir: Path
+    train_data_path: Path
+    test_data_path: Path
+    num_lstm_units: float
+    learning_rate: float
+    epochs: float
+    early_stopping_patience: float
+    nsteps: float
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    test_data_path: Path
+    model_path: Path
+    all_params: dict
+    metric_file_name: Path
+    mlflow_uri: str
+    num_lstm_units: float
+    learning_rate: float
+    epochs: float
+    early_stopping_patience: float
+    nsteps: float

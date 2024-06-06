@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from orangePlatform.entity.config_entity import DataPreparationConfig
 from sklearn.preprocessing import MinMaxScaler
+import joblib
 
 
 class DataPreparation:
@@ -31,6 +32,7 @@ class DataPreparation:
 
         scaled_trainn.to_csv(os.path.join(self.config.root_dir, "train_LTE.csv"),index = False)
         scaled_testt.to_csv(os.path.join(self.config.root_dir, "test_LTE.csv"),index = False)
+        joblib.dump(scaler, os.path.join(self.config.root_dir, "scaler.joblib"))
 
         logger.info("Splited data into training and test sets")
         logger.info(scaled_train.shape)

@@ -1,0 +1,79 @@
+stages:
+  data_ingestion:
+    cmd: python src/orangePlatform/pipeline/stage01dataIngestion.py
+    deps:
+      - src/orangePlatform/pipeline/stage01dataIngestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion
+
+  data_validation:
+    cmd: python src/orangePlatform/pipeline/stage02dataValidation.py
+    deps:
+      - src/orangePlatform/pipeline/stage02dataValidation.py
+      - artifacts/data_ingestion/Orange_data.csv
+      - config/config.yaml
+    outs:
+      - artifacts/data_validation/status.txt
+
+  data_preparation:
+    cmd: python src/orangePlatform/pipeline/stage03dataPreparation.py
+    deps:
+      - src/orangePlatform/pipeline/stage03dataPreparation.py
+      - artifacts/data_ingestion/Orange_data.csv
+      - config/config.yaml
+    outs:
+      - artifacts/data_preparation/train_LTE.csv
+      - artifacts/data_preparation/test_LTE.csv
+      - artifacts/data_preparation/scaler.joblib
+
+  hyperparameter_tuning:
+    cmd: python src/orangePlatform/pipeline/stage_model_hyper_params_tuning.py
+    deps:
+      - src/orangePlatform/pipeline/stage_model_hyper_params_tuning.py
+      - artifacts/data_preparation/train_LTE.csv
+      - artifacts/data_preparation/test_LTE.csv
+      - config/config.yaml
+    params:
+      - num_lstm_units
+      - learning_rate
+      - epochs
+      - early_stopping_patience
+      - nsteps
+    outs:
+      - artifacts/best_model_trainer/pipeline/best_model.joblib
+
+  model_training:
+    cmd: python src/orangePlatform/pipeline/stage04modelTraining.py
+    deps:
+      - src/orangePlatform/pipeline/stage04modelTraining.py
+      - artifacts/data_preparation/train_LTE.csv
+      - artifacts/data_preparation/test_LTE.csv
+      - artifacts/data_preparation/scaler.joblib
+      - config/config.yaml
+    params:
+      - num_lstm_units
+      - learning_rate
+      - epochs
+      - early_stopping_patience
+      - nsteps
+    outs:
+      - artifacts/model_trainer/model.joblib
+
+  model_evaluation:
+    cmd: python src/orangePlatform/pipeline/stage05modelEvaluation.py
+    deps:
+      - src/orangePlatform/pipeline/stage05modelEvaluation.py
+      - artifacts/model_trainer/model.joblib
+      - artifacts/data_preparation/test_LTE.csv
+      - config/config.yaml
+    params:
+      - num_lstm_units
+      - learning_rate
+      - epochs
+      - early_stopping_patience
+      - nsteps
+    outs:
+      - artifacts/model_evaluation/metrics.json
+
+  

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/4b785d15434d4d3e8bd8e8abe536f7b1/artifacts
+end_time: 1717623683843
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4b785d15434d4d3e8bd8e8abe536f7b1
+run_name: awesome-colt-316
+run_uuid: 4b785d15434d4d3e8bd8e8abe536f7b1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717623677311
+status: 3
+tags: []
+user_id: mohamed

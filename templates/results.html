@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Prediction Result</h1>
+    </header>
+
+    <main>
+        <div id="prediction_result">
+            <p>The value for the next day is <span class="value">{{prediction}}</span></p>
+        </div>
+
+    
+
+    <footer>
+        <p>&copy; 2024 Orange Forecasting.</p>
+    </footer>
+</body>
+</html>
+
