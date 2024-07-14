@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/03c1c6489beb418c855d57d6e1a61cc5/artifacts
+end_time: 1720610200027
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 03c1c6489beb418c855d57d6e1a61cc5
+run_name: crawling-ox-29
+run_uuid: 03c1c6489beb418c855d57d6e1a61cc5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1720610193269
+status: 3
+tags: []
+user_id: mohamed

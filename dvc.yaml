@@ -35,13 +35,13 @@ stages:
       - artifacts/data_preparation/test_LTE.csv
       - config/config.yaml
     params:
-      - num_lstm_units
-      - learning_rate
-      - epochs
-      - early_stopping_patience
-      - nsteps
+      - ConvLSTM2D.num_lstm_units
+      - ConvLSTM2D.learning_rate
+      - ConvLSTM2D.epochs
+      - ConvLSTM2D.early_stopping_patience
+      - ConvLSTM2D.nsteps
     outs:
-      - artifacts/best_model_trainer/pipeline/best_model.joblib
+      - artifacts/best_model_trainer
 
   model_training:
     cmd: python src/orangePlatform/pipeline/stage04modelTraining.py
@@ -52,11 +52,11 @@ stages:
       - artifacts/data_preparation/scaler.joblib
       - config/config.yaml
     params:
-      - num_lstm_units
-      - learning_rate
-      - epochs
-      - early_stopping_patience
-      - nsteps
+      - ConvLSTM2D.num_lstm_units
+      - ConvLSTM2D.learning_rate
+      - ConvLSTM2D.epochs
+      - ConvLSTM2D.early_stopping_patience
+      - ConvLSTM2D.nsteps
     outs:
       - artifacts/model_trainer/model.joblib
 
@@ -68,11 +68,11 @@ stages:
       - artifacts/data_preparation/test_LTE.csv
       - config/config.yaml
     params:
-      - num_lstm_units
-      - learning_rate
-      - epochs
-      - early_stopping_patience
-      - nsteps
+      - ConvLSTM2D.num_lstm_units
+      - ConvLSTM2D.learning_rate
+      - ConvLSTM2D.epochs
+      - ConvLSTM2D.early_stopping_patience
+      - ConvLSTM2D.nsteps
     outs:
       - artifacts/model_evaluation/metrics.json
 

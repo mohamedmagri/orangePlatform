@@ -10,6 +10,10 @@ import matplotlib as mpl
 mpl.use('Agg')
 from matplotlib.dates import DateFormatter
 import base64
+from datetime import datetime 
+
+
+
 
 def load_first_data_from_artifact(artifact_folder):
     # Get a list of all files in the artifact folder
@@ -80,26 +84,16 @@ def generate_plot(df):
     df.sort_values('Period', inplace=True)
 
 #     # Generate plot based on data for specified date
-    plt.figure(figsize=(12, 6))  # Increase figure width
+    plt.figure(figsize=(8, 4))  # Increase figure width
     plt.plot(df['Period'], df['LTE'])
     plt.xlabel('Date')
-    plt.ylabel('LTE')
-    plt.title('Prediction Plot for LTE')
+    plt.ylabel('Gigabyte')
+    plt.title('Daily variation of LTE (4G) volume ')
 
-#     # Set date format and tick frequency
+#     # Set date format and tick frequence
     date_format = DateFormatter('%Y-%m-%d')  # Date format YYYY-MM-DD
     plt.gca().xaxis.set_major_formatter(date_format)
     plt.gca().xaxis.set_major_locator(plt.MaxNLocator(6))  # Show up to 6 dates on x-axis
-
-#     # Add vertical line and annotation for input date
-#     input_date = pd.to_datetime(date)
-#     input_value = df[df['Date'] == input_date]['Value'].values
-#     if len(input_value) > 0:
-#         plt.axvline(x=input_date, color='red', linestyle='--', label=f'Input Date: {date}')
-#         plt.annotate(f'Value: {input_value[0]}', xy=(input_date, input_value[0]),
-#                      xytext=(input_date, input_value[0] + 0.1), ha='right', color='red')
-#     else:
-#         print(f'Value for input date {date} not found.')
 
     plt.legend()  # Show legend with input date information
 
@@ -120,13 +114,42 @@ def index():
             config = ConfigurationManager()
             data_training_config = config.get_model_trainer_config()
             obj = PredictionPipeline(config=data_training_config)
-            predict = obj.predict()
+            dict= obj.predict()
+            
+            index = pd.date_range(start='2024-03-21', periods=len(dict), freq='D')
+            df_pred = pd.DataFrame(list(dict.values()), index=index)
+            df_real=df['LTE'].copy()
+            df_real = df_real.to_frame()
 
-            return render_template('results.html', prediction = str(predict))
+# Now you can set the index
+            index1 = pd.date_range(start='2023-03-23', periods=len(df), freq='D')
+            df_real.index = index1
+            #df_hat=pd.DataFrame(yhat, index=index, columns=['Values'])
+            # Plot the time series data
+            plt.figure(figsize=(8, 4))
+            #print(type(df_pred))
+            #print(df_pred.head(10))
+            plt.plot(df_pred, color='red')
+            #print(type(df_real))
+            #print(df_real.head(10))
+            plt.plot(df_real, color='blue')
+            plt.title('LTE forecasting for the next 2 Weeks')
+            plt.xlabel('Date')
+            plt.ylabel('Value')
+            plt.grid(True)
+            buffer = BytesIO()
+            plt.savefig(buffer, format='png')
+            buffer.seek(0)
+            plot_data_pred = base64.b64encode(buffer.read()).decode()
+            plt.close()
+            dict = {datetime.strptime(key, '%Y-%m-%d'): value for key, value in dict.items()}
+            table_data = [{'Date': date.strftime('%Y-%m-%d'), 'Value': value} for date, value in dict.items()]
+
+            return render_template('results.html', plot_data_pred=f'data:image/png;base64,{plot_data_pred}', table_data=table_data)
 
       
 
 
 if __name__ == "__main__":
 	# app.run(host="0.0.0.0", port = 8081, debug=True)
-	app.run(host="0.0.0.0", port = 8081)
+	app.run(host="0.0.0.0", port = 80)

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/dbd7ca9067e14d998888ca39c8121bb3/artifacts
+end_time: 1719068724780
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dbd7ca9067e14d998888ca39c8121bb3
+run_name: beautiful-bee-246
+run_uuid: dbd7ca9067e14d998888ca39c8121bb3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1719068717122
+status: 3
+tags: []
+user_id: mohamed

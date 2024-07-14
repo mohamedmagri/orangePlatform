@@ -1,0 +1,165 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/orangePlatform/pipeline/stage01dataIngestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage01dataIngestion.py
+      hash: md5
+      md5: 139fe2beaf7546011bbc05ae64bdf06c
+      size: 917
+    outs:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: b91dcc789e386ce53dc0015968e36457.dir
+      size: 46659
+      nfiles: 2
+  data_validation:
+    cmd: python src/orangePlatform/pipeline/stage02dataValidation.py
+    deps:
+    - path: artifacts/data_ingestion/Orange_data.csv
+      hash: md5
+      md5: 2c479961573d350e1391dfd8a189b980
+      size: 31227
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage02dataValidation.py
+      hash: md5
+      md5: ace4424683c485f2304e86afdcb59543
+      size: 894
+    outs:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+  data_preparation:
+    cmd: python src/orangePlatform/pipeline/stage03dataPreparation.py
+    deps:
+    - path: artifacts/data_ingestion/Orange_data.csv
+      hash: md5
+      md5: 2c479961573d350e1391dfd8a189b980
+      size: 31227
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage03dataPreparation.py
+      hash: md5
+      md5: c47956b87113d9d9548331b4a0d8c528
+      size: 1280
+    outs:
+    - path: artifacts/data_preparation/scaler.joblib
+      hash: md5
+      md5: f917be334a76171add40d3c8d9fd1a12
+      size: 1023
+    - path: artifacts/data_preparation/test_LTE.csv
+      hash: md5
+      md5: 1aa471b3593c67be099a696225289564
+      size: 1100
+    - path: artifacts/data_preparation/train_LTE.csv
+      hash: md5
+      md5: 06ee5cc750049ea156ef6994deb3c1c8
+      size: 6238
+  hyperparameter_tuning:
+    cmd: python src/orangePlatform/pipeline/stage_model_hyper_params_tuning.py
+    deps:
+    - path: artifacts/data_preparation/test_LTE.csv
+      hash: md5
+      md5: 1aa471b3593c67be099a696225289564
+      size: 1100
+    - path: artifacts/data_preparation/train_LTE.csv
+      hash: md5
+      md5: 06ee5cc750049ea156ef6994deb3c1c8
+      size: 6238
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage_model_hyper_params_tuning.py
+      hash: md5
+      md5: ef1cff67b7d9678c5f5044bc1038ee05
+      size: 914
+    params:
+      params.yaml:
+        ConvLSTM2D.early_stopping_patience: 10
+        ConvLSTM2D.epochs: 100
+        ConvLSTM2D.learning_rate: 0.01
+        ConvLSTM2D.nsteps: 15
+        ConvLSTM2D.num_lstm_units: 128
+    outs:
+    - path: artifacts/best_model_trainer
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+  model_training:
+    cmd: python src/orangePlatform/pipeline/stage04modelTraining.py
+    deps:
+    - path: artifacts/data_preparation/scaler.joblib
+      hash: md5
+      md5: f917be334a76171add40d3c8d9fd1a12
+      size: 1023
+    - path: artifacts/data_preparation/test_LTE.csv
+      hash: md5
+      md5: 1aa471b3593c67be099a696225289564
+      size: 1100
+    - path: artifacts/data_preparation/train_LTE.csv
+      hash: md5
+      md5: 06ee5cc750049ea156ef6994deb3c1c8
+      size: 6238
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage04modelTraining.py
+      hash: md5
+      md5: cb874baaf1da33b4aeb2a8d6c4c16771
+      size: 871
+    params:
+      params.yaml:
+        ConvLSTM2D.early_stopping_patience: 10
+        ConvLSTM2D.epochs: 100
+        ConvLSTM2D.learning_rate: 0.01
+        ConvLSTM2D.nsteps: 15
+        ConvLSTM2D.num_lstm_units: 128
+    outs:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 1dae94888652fff6043a6ad6d89ba135
+      size: 1617367
+  model_evaluation:
+    cmd: python src/orangePlatform/pipeline/stage05modelEvaluation.py
+    deps:
+    - path: artifacts/data_preparation/test_LTE.csv
+      hash: md5
+      md5: 1aa471b3593c67be099a696225289564
+      size: 1100
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 1dae94888652fff6043a6ad6d89ba135
+      size: 1617367
+    - path: config/config.yaml
+      hash: md5
+      md5: ed3b3663b4de1a2941803097fc867c59
+      size: 1194
+    - path: src/orangePlatform/pipeline/stage05modelEvaluation.py
+      hash: md5
+      md5: 361639afc1d709d84dc9140651fc00c4
+      size: 914
+    params:
+      params.yaml:
+        ConvLSTM2D.early_stopping_patience: 10
+        ConvLSTM2D.epochs: 100
+        ConvLSTM2D.learning_rate: 0.01
+        ConvLSTM2D.nsteps: 15
+        ConvLSTM2D.num_lstm_units: 128
+    outs:
+    - path: artifacts/model_evaluation/metrics.json
+      hash: md5
+      md5: f94280ac7a127d2a37a1931c4472ae4f
+      size: 99

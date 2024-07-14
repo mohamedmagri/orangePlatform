@@ -27,7 +27,7 @@ class DataPreparation:
         scaler.fit(train_lstm)
         scaled_train = scaler.transform(train_lstm)
         scaled_test = scaler.transform(test_lstm)
-        scaled_trainn = pd.DataFrame(scaled_train,)
+        scaled_trainn = pd.DataFrame(scaled_train)
         scaled_testt = pd.DataFrame(scaled_test)
 
         scaled_trainn.to_csv(os.path.join(self.config.root_dir, "train_LTE.csv"),index = False)

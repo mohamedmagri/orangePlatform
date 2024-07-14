@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/c514f66d5f064a7c889a5bae6ea91c95/artifacts
+end_time: 1719912931819
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c514f66d5f064a7c889a5bae6ea91c95
+run_name: upset-cod-443
+run_uuid: c514f66d5f064a7c889a5bae6ea91c95
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1719912924910
+status: 3
+tags: []
+user_id: mohamed

@@ -6,18 +6,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orange Forecasting Platform</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .logo {
+            height: 60px;
+        }
+        .title-container {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        h1 {
+            background-color: #FF7900; /* Orange color of Orange telecommunication company */
+            color: white;
+            padding: 20px;
+            font-size: 36px;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: fit-content;
+        }
+        .introduction {
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+        }
+        #plot_image {
+            border: 5px solid #FF7900;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+        .button-container {
+            text-align: right;
+            margin: 20px;
+        }
+        button {
+            background-color: #FF7900;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e66e00;
+        }
+        footer {
+            background-color: #FF7900;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='orange-logo.jpg') }}" alt="Orange Logo" class="logo">
+            <div class="title-container">
+                <h1>Welcome to Orange Forecasting Platform</h1>
+            </div>
+        </div>
+    </header>
     <div style="text-align: center;">
-        <h1>Welcome to Orange Forecasting Platform</h1>
-        <img id="plot_image" src="{{ plot }}" alt="Prediction Plot" />
-        <br />
+        <div class="introduction">
+            Welcome to our platform! Here is the daily variation of LTE (4G) volume that we will forecast. 
+            These forecasts can help us improve our quality of services, optimize network performance, 
+            and enhance user satisfaction. Stay tuned for the latest insights and predictions.
+            <img id="plot_image" src="{{ plot }}" alt="Prediction Plot" />
+        </div>
+        
+    </div>
+    <div class="button-container">
         <form action="/predict" method="POST">
             <button type="submit">Get Prediction</button>
         </form>
     </div>
+    <footer>
+        <p>&copy; 2024 Orange Forecasting.</p>
+    </footer>
 </body>
 
 </html>

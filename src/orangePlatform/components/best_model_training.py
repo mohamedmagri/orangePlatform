@@ -54,8 +54,8 @@ class BestModelTrainer:
         test=test_data.values
 
         hyperparams = {
-            'num_lstm_units': [256],
-            'learning_rate': [0.001],
+            'num_lstm_units': [128],
+            'learning_rate': [0.01],
             'epochs': [100],
             'early_stopping_patience': [10],
             'nsteps': [10]

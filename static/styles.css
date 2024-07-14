@@ -1,7 +1,7 @@
 /* General styles */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa; /* Light gray background */
@@ -13,15 +13,52 @@ header {
     padding: 20px;
     text-align: center;
     margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
 }
 
 main {
     margin: 0 auto;
-    max-width: 800px; /* Adjust width as needed */
+    max-width: 600px; /* Adjust width as needed */
     padding: 20px;
-    background-color: #fff; /* White background for main content */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    text-align: center;
+}
+
+#prediction_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust height as needed */
+}
+
+#prediction_card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 40px;
+    text-align: center;
+    border-top: 5px solid #f6921e;
+}
+
+#prediction_card .label {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#prediction_card .value {
+    font-size: 2em;
+    font-weight: 700;
+    color: #28a745; /* Green color for value */
+    background-color: #e6ffe6; /* Light green background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 footer {
@@ -30,57 +67,12 @@ footer {
     padding: 10px;
     text-align: center;
     margin-top: 20px;
-    border-radius: 5px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Index page specific styles */
-
-#index-content {
-    text-align: center;
-}
-
-#date-input {
-    margin-bottom: 20px;
-}
-
-#prediction-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#prediction-button:hover {
-    background-color: #0056b3; /* Darker shade of blue on hover */
-}
-
-/* Result page specific styles */
-
-#prediction_result {
-    margin-bottom: 20px;
-}
-
-.date {
-    color: #007bff; /* Blue color for date */
-    font-weight: bold;
-}
-
-.value {
-    color: #28a745; /* Green color for value */
-    font-weight: bold;
-}
-
-#plot {
-    text-align: center;
-}
-
-#plot img {
-    max-width: 100%; /* Make sure the plot image fits within its container */
-    height: auto;
-    margin-top: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow effect for plot image */
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: 400;
 }

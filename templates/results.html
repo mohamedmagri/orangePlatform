@@ -3,24 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Forecasting Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background-color: #ff7900; /* Orange color */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        footer {
+            background-color: #ff7900;
+            text-align: center;
+            margin: 20px 0;
+        }
+        #prediction_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #prediction_card {
+            border: 5px solid #FF7900;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+        #prediction_table {
+            margin: 20px 0;
+        }
+        table {
+            background-color: #1e1e1e;
+        }
+        th, td {
+            color: #ffffff;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        #table_header {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Prediction Result</h1>
     </header>
-
     <main>
-        <div id="prediction_result">
-            <p>The value for the next day is <span class="value">{{prediction}}</span></p>
+        <div id="prediction_container">
+            <div id="prediction_card" class="card">
+                <img id="plot_data_pred" src="{{ plot_data_pred }}" class="card-img-top" alt="Prediction Plot">
+            </div>
+            <div id="prediction_table" class="table-responsive">
+                <h2 id="table_header">Here is the table of forecasted values for the next two weeks :</h2>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in table_data %}
+                        <tr>
+                            <td>{{ row['Date'] }}</td>
+                            <td>{{ row['Value'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-    
-
+    </main>
     <footer>
-        <p>&copy; 2024 Orange Forecasting.</p>
+        <p>&copy; 2024 Orange Forecasting Platform</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
