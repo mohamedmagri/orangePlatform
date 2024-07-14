@@ -231,7 +231,8 @@ class PredictionPipeline:
         if live_loss['mae'] >= static_loss['mae']:
             print("===========================starting the online learning========================== ")
             self.trigger_retraining()
-        subprocess.run(["dvc", "repro", "-s", "data_ingestion", "-f"], check=True)
+        else:
+            subprocess.run(["dvc", "repro", "-s", "data_ingestion", "-f"], check=True)
         return dict
 
         

@@ -2,5 +2,5 @@ ConvLSTM2D:
   early_stopping_patience: 10
   epochs: 100
   learning_rate: 0.01
-  nsteps: 15
+  nsteps: 10
   num_lstm_units: 128

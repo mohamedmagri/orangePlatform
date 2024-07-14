@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/mohamed/Desktop/stage%20pfe%20Orange/orangePlatform/orangePlatform/mlruns/0/ec1ca053cb2b44d88791c63b9921fce0/artifacts
+end_time: 1720968552913
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ec1ca053cb2b44d88791c63b9921fce0
+run_name: resilient-whale-398
+run_uuid: ec1ca053cb2b44d88791c63b9921fce0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1720968544300
+status: 3
+tags: []
+user_id: mohamed
