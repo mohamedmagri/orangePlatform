@@ -11,9 +11,9 @@ joblib
 types-PyYAML
 Flask
 Flask-Cors
-keras
-tensorflow
-PyYAML
-jsonlib-python3
+keras==2.6.0
+tensorflow==2.6.0
+PyYAML==5.4.1
+jsonlib-python3==1.6.1
 subprocess32
--e .
+
